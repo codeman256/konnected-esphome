@@ -35,9 +35,9 @@ substitutions:
   # By default, the name of the ESPHome device is "konnected-xxxxxx" where xxxxxx is a unique identifier. The device's
   # hostname on your network is also defined by the name, defaulting to "konnected-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
-  name: konnected
-  friendly_name: Alarm Panel Pro
-  project_name: konnected.alarm-panel-pro-wifi
+  name: alarm-control-panel
+  friendly_name: Alarm Control Panel
+  project_name: codeman.alarm-control-panel
   project_version: "1.1.1"
 
   sensor_debounce_time: 200ms
@@ -80,7 +80,7 @@ substitutions:
 packages:
 
   remote_package:
-    url: https://github.com/konnected-io/konnected-esphome
+    url: https://github.com/codeman256/konnected-esphome
     ref: master
     refresh: 5min
     files:
@@ -103,17 +103,17 @@ packages:
       ####
       # INPUT ZONES
       - packages/alarm-panel/zone1.yaml
-      - packages/alarm-panel/zone2.yaml
-      - packages/alarm-panel/zone3.yaml
-      - packages/alarm-panel/zone4.yaml
-      - packages/alarm-panel/zone5.yaml
-      - packages/alarm-panel/zone6.yaml
-      - packages/alarm-panel/zone7.yaml
-      - packages/alarm-panel/zone8.yaml
-      - packages/alarm-panel/zone9.yaml
-      - packages/alarm-panel/zone10.yaml
-      - packages/alarm-panel/zone11.yaml
-      - packages/alarm-panel/zone12.yaml
+      # - packages/alarm-panel/zone2.yaml
+      # - packages/alarm-panel/zone3.yaml
+      # - packages/alarm-panel/zone4.yaml
+      # - packages/alarm-panel/zone5.yaml
+      # - packages/alarm-panel/zone6.yaml
+      # - packages/alarm-panel/zone7.yaml
+      # - packages/alarm-panel/zone8.yaml
+      # - packages/alarm-panel/zone9.yaml
+      # - packages/alarm-panel/zone10.yaml
+      # - packages/alarm-panel/zone11.yaml
+      # - packages/alarm-panel/zone12.yaml
 
       ####
       # OUTPUTS
@@ -128,7 +128,7 @@ packages:
       - packages/warning-beep.yaml
 
 dashboard_import:
-  package_import_url: github://konnected-io/konnected-esphome/alarm-panel-pro-esp32-wifi.yaml@master
+  package_import_url: github://codeman256/konnected-esphome/alarm-panel-pro-esp32-wifi.yaml@master
   import_full_config: false
 
 ####
