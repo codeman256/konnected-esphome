@@ -1,0 +1,6 @@
+switch:
+  - id: alarm4
+    name: Alarm 4
+    pin: $alarm4
+    platform: gpio
+    icon: mdi:bullhorn
