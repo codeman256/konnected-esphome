@@ -12,7 +12,7 @@ light:
     rmt_channel: 0
     chipset: ws2812
     name: "Zone Status Lights"    
-    internal_only: true  
+    internal: true
     # effects:
     # - addressable_lambda:
     #     name: "My Custom Effect"
