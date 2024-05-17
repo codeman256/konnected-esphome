@@ -32,7 +32,7 @@ light:
           it[0] = Color::random_color();
 
           // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-          // it.range(0, 3) = Color::BLUE;
+          // it.range(0, 3) = Color::Blue;
           // it.all().fade_to_black(10);
 
   # - platform: partition
