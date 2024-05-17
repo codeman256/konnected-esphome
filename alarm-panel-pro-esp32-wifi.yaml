@@ -88,6 +88,7 @@ substitutions:
   out1: GPIO13
   out2: GPIO12
   status_led: GPIO14
+  leds: GPIO17
   
   ####
   # CONNECTION MAPPINGS
