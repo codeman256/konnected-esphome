@@ -147,6 +147,8 @@ packages:
       # OUTPUTS
       - packages/alarm-panel/alarm1.yaml
       - packages/alarm-panel/alarm2.yaml
+      # - packages/alarm-panel/alarm3.yaml
+      # - packages/alarm-panel/alarm4.yaml
 
       ####
       # WARNING BEEP
