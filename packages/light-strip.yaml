@@ -30,9 +30,9 @@ light:
           it[0] = Color::random_color();
 
           // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-          it.range(0, 50) = Color::BLACK;
+          it.range(0, 3) = Color::BLACK;
           it.all().fade_to_black(10);
-          
+
 # script:
 #   - id: blink_status_led
 #     then:
