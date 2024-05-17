@@ -9,6 +9,13 @@ binary_sensor:
     filters:
       - delayed_on_off: $sensor_debounce_time
     on_state:
+      - light.addressable_set:
+          id: zonelights
+          range_from: 0
+          range_to: 2
+          red: 100%
+          green: 0%
+          blue: 0%
       - if:
           condition:
             lambda: return id(blink_on_state);

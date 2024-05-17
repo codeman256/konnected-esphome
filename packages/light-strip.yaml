@@ -25,13 +25,14 @@ light:
 
           // Example: Simple color wipe
           for (int i = it.size() - 1; i > 0; i--) {
-            it[i] = it[i - 1].get();
+            // it[i] = it[i - 1].get();
+            it[i-1] = Color(128, 128, 0);
           }
           it[0] = Color::random_color();
 
           // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-          it.range(0, 3) = Color::BLACK;
-          it.all().fade_to_black(10);
+          it.range(0, 3) = Color::BLUE;
+          //it.all().fade_to_black(10);
 
 # script:
 #   - id: blink_status_led
