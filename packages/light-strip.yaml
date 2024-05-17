@@ -11,29 +11,30 @@ light:
     num_leds: 12
     rmt_channel: 0
     chipset: ws2812
-    name: "Zone Status Lights"      
-    effects:
-    - addressable_lambda:
-        name: "My Custom Effect"
-        update_interval: 16ms
-        lambda: |-
-          // it.size() - Number of LEDs
-          // it[num] - Access the LED at index num.
-          // Set the LED at num to the given r, g, b values
-          // it[num] = Color(r, g, b);
-          // Get the color at index num (Color instance)
-          // it[num].get();
+    name: "Zone Status Lights"    
+    internal_only: true  
+    # effects:
+    # - addressable_lambda:
+    #     name: "My Custom Effect"
+    #     update_interval: 16ms
+    #     lambda: |-
+    #       // it.size() - Number of LEDs
+    #       // it[num] - Access the LED at index num.
+    #       // Set the LED at num to the given r, g, b values
+    #       // it[num] = Color(r, g, b);
+    #       // Get the color at index num (Color instance)
+    #       // it[num].get();
 
-          // Example: Simple color wipe
-          for (int i = it.size() - 1; i > 0; i--) {
-            // it[i] = it[i - 1].get();
-            it[i-1] = Color(128, 128, 0);
-          }
-          it[0] = Color::random_color();
+    #       // Example: Simple color wipe
+    #       for (int i = it.size() - 1; i > 0; i--) {
+    #         // it[i] = it[i - 1].get();
+    #         it[i-1] = Color(128, 128, 0);
+    #       }
+    #       it[0] = Color::random_color();
 
-          // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-          // it.range(0, 3) = Color::Blue;
-          // it.all().fade_to_black(10);
+    #       // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
+    #       // it.range(0, 3) = Color::Blue;
+    #       // it.all().fade_to_black(10);
 
   # - platform: partition
   #   name: "Zone Light 1"
