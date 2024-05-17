@@ -36,20 +36,20 @@ substitutions:
   # hostname on your network is also defined by the name, defaulting to "konnected-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
   name: alarmpanel2
-  friendly_name: Alarm Control Panel
+  friendly_name: Alarm Control Panel 2
   project_name: codeman256.alarm-control-panel
-  project_version: "0.1.1"
+  project_version: "0.1.2"
 
   sensor_debounce_time: 200ms
-  warning_beep_pulse_time: 100ms
-  warning_beep_pause_time: 130ms
+  warning_beep_pulse_time: 1ms
+  warning_beep_pause_time: 1ms
   warning_beep_internal_only: "false"
   warning_beep_shared: "false"
   blink_on_state: "true"
+  status_led_inverted: "true"
 
   ####
-  # ZONE MAPPING
-  # Do not edit this section.
+  # OLD ZONE MAPPING
   # zone1: GPIO4
   # zone2: GPIO2
   # zone3: GPIO15
@@ -88,11 +88,12 @@ substitutions:
   out1: GPIO13
   out2: GPIO12
   status_led: GPIO14
-  leds: GPIO17
+  leds: GPIO17 
   
   ####
   # CONNECTION MAPPINGS
   warning_beep_pin: $out1
+
 
 ####
 # PACKAGES
@@ -130,17 +131,17 @@ packages:
       ####
       # INPUT ZONES
       - packages/alarm-panel/zone1.yaml
-      # - packages/alarm-panel/zone2.yaml
-      # - packages/alarm-panel/zone3.yaml
-      # - packages/alarm-panel/zone4.yaml
-      # - packages/alarm-panel/zone5.yaml
-      # - packages/alarm-panel/zone6.yaml
-      # - packages/alarm-panel/zone7.yaml
-      # - packages/alarm-panel/zone8.yaml
-      # - packages/alarm-panel/zone9.yaml
-      # - packages/alarm-panel/zone10.yaml
-      # - packages/alarm-panel/zone11.yaml
-      # - packages/alarm-panel/zone12.yaml
+      - packages/alarm-panel/zone2.yaml
+      - packages/alarm-panel/zone3.yaml
+      - packages/alarm-panel/zone4.yaml
+      - packages/alarm-panel/zone5.yaml
+      - packages/alarm-panel/zone6.yaml
+      - packages/alarm-panel/zone7.yaml
+      - packages/alarm-panel/zone8.yaml
+      - packages/alarm-panel/zone9.yaml
+      - packages/alarm-panel/zone10.yaml
+      - packages/alarm-panel/zone11.yaml
+      - packages/alarm-panel/zone12.yaml
 
       ####
       # OUTPUTS
@@ -170,14 +171,9 @@ web_server:
 # more: https://esphome.io/components/logger.html
 logger:
 
-####
-# NATIVE API for HOME ASSISTANT
-# Enables the native API for Home Assistant
-# more: https://esphome.io/components/api.html
+# Enable Home Assistant API
 api:
 
-#### 
-# OTA UPDATES
-# Enables over-the-air updates
-# more: https://esphome.io/components/ota.html
 ota:
+
+
