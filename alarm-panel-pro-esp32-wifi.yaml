@@ -122,6 +122,11 @@ packages:
       - packages/status-led.yaml
 
       ####
+      # Zone Light Strip
+      # 
+      - packages/light-strip.yaml
+
+      ####
       # INPUT ZONES
       - packages/alarm-panel/zone1.yaml
       # - packages/alarm-panel/zone2.yaml
