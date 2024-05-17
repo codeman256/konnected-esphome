@@ -1,4 +1,5 @@
 switch:
+
   - id: alarm2
     name: Alarm 2
     pin: $alarm2
