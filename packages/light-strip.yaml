@@ -5,6 +5,7 @@
 
 light:
   - platform: esp32_rmt_led_strip
+    id: zonelights
     rgb_order: GRB
     pin: $leds
     num_leds: 12
@@ -31,8 +32,17 @@ light:
           it[0] = Color::random_color();
 
           // Bonus: use .range() and .all() to set many LEDs without having to write a loop.
-          it.range(0, 3) = Color::BLUE;
-          //it.all().fade_to_black(10);
+          // it.range(0, 3) = Color::BLUE;
+          // it.all().fade_to_black(10);
+
+  # - platform: partition
+  #   name: "Zone Light 1"
+  #   internal: true
+  #   segments:
+  #     # Use first 10 LEDs from the light with ID light1
+  #     - id: zonelight1
+  #       from: 0
+  #       to: 1
 
 # script:
 #   - id: blink_status_led
