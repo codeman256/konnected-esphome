@@ -6,7 +6,7 @@ globals:
 light:
   - platform: status_led
     id: blue_status_led
-    internal: true
+    internal: 'true'
     pin:
       number: $status_led
       inverted: $status_led_inverted
