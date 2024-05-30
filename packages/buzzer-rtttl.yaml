@@ -5,7 +5,7 @@ output:
 
 rtttl:
   output: rtttl_out
-  gain: 60%
+  gain: 80%
 
 button:
   - platform: template
