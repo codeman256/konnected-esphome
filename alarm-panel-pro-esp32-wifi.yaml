@@ -155,8 +155,8 @@ packages:
       # Enables a 'Warning Beep' entity, intended to be used with a piezo buzzer or other pulsing.
       # binary output This is implemented using the light component with strobe effect to create a 
       # repeated beeping sound or pulsing action that can be turned on via the _strobe_ effect.
-      - packages/warning-beep.yaml
-      #- packages/buzzer-rtttl.yaml
+      #- packages/warning-beep.yaml
+      - packages/buzzer-rtttl.yaml
 
 dashboard_import:
   package_import_url: github://codeman256/konnected-esphome/alarm-panel-pro-esp32-wifi.yaml@master
@@ -168,6 +168,10 @@ dashboard_import:
 # on the same local network as the device.
 web_server:
   include_internal: true
+  ota: true
+  auth:
+    username: !secret web_server_username
+    password: !secret web_server_password
 
 #### 
 # LOGGER
@@ -177,5 +181,8 @@ logger:
 # Enable Home Assistant API
 api:
 
-ota:
+oota:
+  - platform: esphome
+    safe_mode: true
+    password: !secret ota_passwordord
 
