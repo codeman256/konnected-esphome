@@ -24,6 +24,7 @@ substitutions:
 external_components:
   - source: github://codeman256/konnected-esphome@master
     components: [ mdns ]
+    refresh: 30min
 
 text_sensor:
   - platform: template
