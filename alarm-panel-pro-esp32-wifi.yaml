@@ -168,7 +168,7 @@ dashboard_import:
 # on the same local network as the device.
 web_server:
   include_internal: true
-  ota: true
+  #ota: true
   auth:
     username: !secret web_server_username
     password: !secret web_server_password
