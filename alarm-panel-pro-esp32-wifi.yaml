@@ -168,10 +168,10 @@ dashboard_import:
 # on the same local network as the device.
 web_server:
   include_internal: true
-  ota: False
-  auth:
-    username: !secret web_server_username
-    password: !secret web_server_password
+#  ota: False
+#  auth:
+#    username: !secret web_server_username
+#    password: !secret web_server_password
 
 #### 
 # LOGGER
