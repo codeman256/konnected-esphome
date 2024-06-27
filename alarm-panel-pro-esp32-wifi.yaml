@@ -35,10 +35,10 @@ substitutions:
   # By default, the name of the ESPHome device is "konnected-xxxxxx" where xxxxxx is a unique identifier. The device's
   # hostname on your network is also defined by the name, defaulting to "konnected-xxxxxx.local". Edit this variable to
   # customize the name and hostname. Note: only lowercase characters, numbers and hyphen(-) are allowed.
-  name: alarmpanel2
-  friendly_name: Alarm Control Panel 2
+  name: alarmpanel
+  friendly_name: Alarm Control Panel
   project_name: codeman256.alarm-control-panel
-  project_version: "0.1.2"
+  project_version: "0.1.3"
 
   sensor_debounce_time: 200ms
   warning_beep_pulse_time: 1ms
