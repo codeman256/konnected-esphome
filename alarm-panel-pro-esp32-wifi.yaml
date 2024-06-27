@@ -160,7 +160,7 @@ packages:
 
 dashboard_import:
   package_import_url: github://codeman256/konnected-esphome/alarm-panel-pro-esp32-wifi.yaml@master
-  import_full_config: false
+  import_full_config: true
 
 ####
 # WEB SEVER
@@ -183,6 +183,10 @@ api:
 
 ota:
   - platform: esphome
-    safe_mode: true
+    #safe_mode: true
     password: !secret ota_password
+
+# ota:
+#   - id: !extend konnected_ota
+#     password: !secret ota_password
 
