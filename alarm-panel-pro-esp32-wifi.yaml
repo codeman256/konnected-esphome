@@ -186,6 +186,7 @@ ota:
     #safe_mode: true
     password: !secret ota_password
 
+### if need to extend from internal ota
 # ota:
 #   - id: !extend konnected_ota
 #     password: !secret ota_password
