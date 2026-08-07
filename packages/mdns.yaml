@@ -1,0 +1,37 @@
+# Adds a _konnected MDNS/Zeroconf service used for discovery and identification of a Konnected device
+# in the official Konnected app and some integrations
+
+mdns:
+  services:
+    - service: _konnected
+      protocol: _tcp
+      port: !lambda |-
+        return
+        #if defined(USE_WEBSERVER_PORT)
+          USE_WEBSERVER_PORT
+        #else
+          0
+        #endif
+        ;
+      txt:
+        friendly_name: !lambda return App.get_friendly_name();
+        project_name: !lambda return ESPHOME_PROJECT_NAME;
+        project_version: !lambda return ESPHOME_PROJECT_VERSION;
+        mac: !lambda return get_mac_address();
+        esphome_version: !lambda return ESPHOME_VERSION;
+        platform: !lambda |-
+          return
+          #if defined(USE_ESP8266)
+            "ESP8266"
+          #elif defined(USE_ESP32)
+            "ESP32"
+          #endif
+          ;
+        network: !lambda |-
+          return
+          #if defined(USE_WIFI)
+          "wifi"
+          #elif defined(USE_ETHERNET)
+          "ethernet"
+          #endif
+          ;

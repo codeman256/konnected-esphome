@@ -38,7 +38,7 @@ substitutions:
   name: konnected
   friendly_name: Alarm Panel Pro
   project_name: konnected.alarm-panel-pro-ethernet
-  project_version: "1.1.2"
+  project_version: "1.2.2"
 
   # ETHERNET CONFIG
   # On the Alarm Panel Pro v1.5, v1.6 and v1.7 use LAN8720. On the v1.8 set this variable to RTL8201.
@@ -100,6 +100,11 @@ packages:
       - packages/ethernet.yaml
 
       ####
+      # MDNS
+      # Enables the _konnected MDNS/zeroconf service advertisement needed for the Konnected App
+      - packages/mdns.yaml
+
+      ####
       # STATUS LED
       # Enables the onboard blue status LED as an activity/error indicator
       - packages/status-led.yaml
@@ -152,9 +157,3 @@ logger:
 # Enables the native API for Home Assistant
 # more: https://esphome.io/components/api.html
 api:
-
-#### 
-# OTA UPDATES
-# Enables over-the-air updates
-# more: https://esphome.io/components/ota.html
-ota:

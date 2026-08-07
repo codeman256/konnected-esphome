@@ -38,7 +38,7 @@ substitutions:
   name: konnected
   friendly_name: Alarm Panel
   project_name: konnected.alarm-panel-esp8266
-  project_version: "1.1.1"
+  project_version: "1.1.3"
 
   ####
   # SETTINGS
@@ -96,6 +96,11 @@ packages:
       - packages/wifi.yaml
 
       ####
+      # MDNS
+      # Enables the _konnected MDNS/zeroconf service advertisement needed for the Konnected App
+      - packages/mdns.yaml
+
+      ####
       # STATUS LED
       # Enables the onboard blue status LED as an activity/error indicator
       - packages/status-led.yaml
@@ -128,15 +133,11 @@ logger:
     sensor: INFO
     json: INFO
     api: DEBUG
+    wifi: DEBUG
+    wifi_esp8266: DEBUG
 
 ####
 # NATIVE API for HOME ASSISTANT
 # Enables the native API for Home Assistant
 # more: https://esphome.io/components/api.html
 api:
-
-#### 
-# OTA UPDATES
-# Enables over-the-air updates
-# more: https://esphome.io/components/ota.html
-ota:

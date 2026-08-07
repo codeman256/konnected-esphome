@@ -1,0 +1,26 @@
+# Enables a GDO input as an external binary sensor which can be used to wire 
+# an external sensor to the Konnected GDO. For example, add a motion sensor in the garage
+# or a contact sensor that is reported independently of the garage door.
+
+defaults:
+  idx: '1'
+  inverted: "false"
+  device_class: ""
+
+binary_sensor:
+  - platform: gpio
+    id: external_sensor_${idx}
+    pin: 
+      number: ${pin}
+      mode: INPUT_PULLUP
+      inverted: ${inverted}
+    name: ${name}
+    device_class: ${device_class}
+    filters:
+      - delayed_on_off: ${sensor_debounce_time}
+    on_state:
+      - if:
+          condition:
+            lambda: return id(blink_on_state);
+          then:
+            - script.execute: blink_status_led

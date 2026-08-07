@@ -2,14 +2,19 @@ esphome:
   name: $name
   friendly_name: $friendly_name
   name_add_mac_suffix: true
+  min_version: '2024.12.0' # Includes ESP-IDF 5.1
   project:
     name: $project_name
-    version: $project_version 
+    version: $project_version  
   on_boot:
-    then:
-      - text_sensor.template.publish:
-          id: device_id
-          state: !lambda 'return get_mac_address();'
+    - priority: 800.0
+      then:
+        - text_sensor.template.publish:
+            id: device_id
+            state: !lambda return get_mac_address();
+        - text_sensor.template.publish:
+            id: project_version
+            state: !lambda return ESPHOME_PROJECT_VERSION;
 
 esp32:  
   board: wesp32
@@ -20,12 +25,6 @@ esp32:
 substitutions:
   status_led_inverted: "false"
 
-# overrides the MDNS component to add a Konnected service
-external_components:
-  - source: github://codeman256/konnected-esphome@master
-    components: [ mdns ]
-    refresh: 30min
-
 text_sensor:
   - platform: template
     name: Device ID
@@ -33,12 +32,19 @@ text_sensor:
     entity_category: diagnostic
     update_interval: never
   - platform: version
+    id: esphome_version
     name: ESPHome Version
     hide_timestamp: true
-    
+  - platform: template
+    name: Project version
+    id: project_version
+    entity_category: diagnostic
+    update_interval: never
+
 sensor:
   - platform: uptime
     name: Uptime
+    id: uptime_sensor
     entity_category: diagnostic
 
 button:
@@ -48,3 +54,12 @@ button:
   # - platform: factory_reset
   #   name: Factory Reset
   #   entity_category: config
+
+#### 
+# OTA UPDATES
+# Enables over-the-air updates
+# more: https://esphome.io/components/ota.html
+ota:
+  - platform: esphome
+    id: konnected_ota
+

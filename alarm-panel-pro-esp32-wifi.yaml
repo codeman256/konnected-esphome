@@ -38,7 +38,7 @@ substitutions:
   name: alarmpanel
   friendly_name: Alarm Control Panel
   project_name: codeman256.alarm-control-panel
-  project_version: "0.1.3"
+  project_version: "0.2.2"
 
   sensor_debounce_time: 200ms
   warning_beep_pulse_time: 1ms
@@ -119,6 +119,11 @@ packages:
       - packages/wifi-esp32.yaml
 
       ####
+      # MDNS
+      # Enables the _konnected MDNS/zeroconf service advertisement needed for the Konnected App
+      - packages/mdns.yaml
+
+      ####
       # STATUS LED
       # Enables the onboard blue status LED as an activity/error indicator
       - packages/status-led.yaml
@@ -178,16 +183,8 @@ web_server:
 # more: https://esphome.io/components/logger.html
 logger:
 
-# Enable Home Assistant API
+####
+# NATIVE API for HOME ASSISTANT
+# Enables the native API for Home Assistant
+# more: https://esphome.io/components/api.html
 api:
-
-ota:
-  - platform: esphome
-    #safe_mode: true
-    password: !secret ota_password
-
-### if need to extend from internal ota
-# ota:
-#   - id: !extend konnected_ota
-#     password: !secret ota_password
-

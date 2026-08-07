@@ -22,7 +22,7 @@ namespace secplus_gdo {
         void setup() override {
             std::string value;
             size_t index;
-            this->pref_ = global_preferences->make_preference<size_t>(this->get_object_id_hash());
+            this->pref_ = this->make_entity_preference<size_t>();
             if (!this->pref_.load(&index)) {
                 value = this->initial_option_;
             } else if (!this->has_index(index)) {
@@ -39,7 +39,8 @@ namespace secplus_gdo {
         void update_state(gdo_protocol_type_t protocol) {
             if (this->has_index(protocol)) {
                 std::string value = this->at(protocol).value();
-                if (this->has_state() && value != this->state) {
+                auto current_option = this->current_option();
+                if (this->has_state() && value != current_option) {
                     this->pref_.save(&protocol);
                 }
 

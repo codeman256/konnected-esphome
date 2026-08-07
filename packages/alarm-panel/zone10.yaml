@@ -1,10 +1,13 @@
+defaults:
+  mode: INPUT
+
 binary_sensor:
 
   - id: zone10
     name: Zone 10    
     pin:
       number: $zone10
-      mode: INPUT_PULLUP #INPUT
+      mode: ${mode}
     platform: gpio   
     publish_initial_state: true
     filters:

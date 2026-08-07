@@ -1,0 +1,27 @@
+# Adds an external toggle switch via Input (1) or (2) on the GDO blaQ
+# which enables the connection of a basic button, switch or dry-contact
+# relay to toggle the garage door, just like in the old days!
+#
+# This can be useful to integrate a newer Security+ garage opener with an external
+# system that has a relay output
+#
+# Defaults to a 'Normally Open' relay type, with a momentary contact triggering
+# the door. Change `inverted` to "false" for 'Normally Closed'
+
+defaults:
+  inverted: "true"
+
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: ${pin}
+      mode: INPUT_PULLUP
+      inverted: ${inverted}
+    name: Garage Door Relay
+    id: gdo_external_toggle
+    on_click:
+      min_length: 50ms
+      max_length: 3s
+      then:
+        - cover.toggle: gdo_door    
+

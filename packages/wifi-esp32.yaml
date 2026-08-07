@@ -6,7 +6,7 @@ improv_serial:
 captive_portal:
 
 esp32_improv:
-  authorizer: false
+  authorizer: none
 
 sensor:
   - platform: wifi_signal
@@ -16,15 +16,18 @@ sensor:
 
   - platform: copy
     source_id: wifi_signal_db
+    id: wifi_signal_pct
     name: WiFi Signal %
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
     entity_category: diagnostic
+    device_class: ""
 
 text_sensor:
   - platform: wifi_info
     ip_address:
+      id: ip_address
       name: IP Address
       entity_category: diagnostic
   

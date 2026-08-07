@@ -21,7 +21,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome import automation
 from esphome.components import cover
-from esphome.const import CONF_ID, CONF_TRIGGER_ID
+from esphome.const import CONF_TRIGGER_ID
 
 from .. import SECPLUS_GDO_CONFIG_SCHEMA, secplus_gdo_ns, CONF_SECPLUS_GDO_ID
 
@@ -40,32 +40,28 @@ CoverClosingEndTrigger = secplus_gdo_ns.class_(
 CONF_PRE_CLOSE_WARNING_DURATION = "pre_close_warning_duration"
 CONF_PRE_CLOSE_WARNING_START = "pre_close_warning_start"
 CONF_PRE_CLOSE_WARNING_END = "pre_close_warning_end"
-CONF_TOGGLE_ONLY = "toggle_only"
 
-CONFIG_SCHEMA = cover.COVER_SCHEMA.extend(
-    {
-        cv.GenerateID(): cv.declare_id(GDODoor),
-        cv.Optional(CONF_PRE_CLOSE_WARNING_DURATION, default=0): cv.positive_time_period_milliseconds,
-        cv.Optional(CONF_PRE_CLOSE_WARNING_START): automation.validate_automation(
-            {cv.GenerateID(CONF_TRIGGER_ID): cv.declare_id(CoverClosingStartTrigger)}
-        ),
-        cv.Optional(CONF_PRE_CLOSE_WARNING_END): automation.validate_automation(
-            {cv.GenerateID(CONF_TRIGGER_ID): cv.declare_id(CoverClosingEndTrigger)}
-        ),
-        cv.Optional(CONF_TOGGLE_ONLY, default=False): cv.boolean,
-    }
-).extend(SECPLUS_GDO_CONFIG_SCHEMA)
-
+CONFIG_SCHEMA = (
+    cover.cover_schema(GDODoor)
+    .extend(
+        {
+            cv.Optional(CONF_PRE_CLOSE_WARNING_DURATION, default=0): cv.positive_time_period_milliseconds,
+            cv.Optional(CONF_PRE_CLOSE_WARNING_START): automation.validate_automation(
+                {cv.GenerateID(CONF_TRIGGER_ID): cv.declare_id(CoverClosingStartTrigger)}
+            ),
+            cv.Optional(CONF_PRE_CLOSE_WARNING_END): automation.validate_automation(
+                {cv.GenerateID(CONF_TRIGGER_ID): cv.declare_id(CoverClosingEndTrigger)}
+            ),
+        }
+    ).extend(SECPLUS_GDO_CONFIG_SCHEMA)
+)
 
 async def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID])
+    var = await cover.new_cover(config)
     await cg.register_component(var, config)
-    await cover.register_cover(var, config)
     parent = await cg.get_variable(config[CONF_SECPLUS_GDO_ID])
-    text = "std::bind(&" + str(GDODoor) + "::set_state," + str(config[CONF_ID]) + ",std::placeholders::_1,std::placeholders::_2)"
-    cg.add(parent.register_door(cg.RawExpression(text)))
+    cg.add(parent.register_door(var))
     cg.add(var.set_pre_close_warning_duration(config[CONF_PRE_CLOSE_WARNING_DURATION]))
-    cg.add(var.set_toggle_only(config[CONF_TOGGLE_ONLY]))
     for conf in config.get(CONF_PRE_CLOSE_WARNING_START, []):
         trigger = cg.new_Pvariable(conf[CONF_TRIGGER_ID], var)
         await automation.build_automation(trigger, [], conf)
