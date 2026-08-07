@@ -6,6 +6,7 @@ globals:
 light:
   - platform: status_led
     id: blue_status_led
+    name: Status LED
     internal: 'true'
     pin:
       number: $status_led
